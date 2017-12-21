@@ -1,0 +1,13 @@
+---
+applications:
+- name: EvidencerPortal
+  memory: 512M
+  host: judiciary
+  domain: mybluemix.net
+  services:
+  - Language Translator-vg
+  - speech to text bgvba-speech_to_-1505306502832
+  - Speech to Text-2o
+  - Tone Analyzer-x1
+  - Watson Speech to Text Ba-speech_to_-1505306554715
+  - senzittoken-personality_insights
