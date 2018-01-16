@@ -9,8 +9,8 @@
 
 <%!	String requestToAppServer(String link,List<String> postData,HttpClient client){
 	
-	   PostMethod method = new PostMethod("https://evidencer.mybluemix.net/evidencer/"+link); 
-	   /*	PostMethod method = new PostMethod("http://127.0.0.1:8081/Evidencer/evidencer/"+link);  */   
+	   //PostMethod method = new PostMethod("https://evidencer.mybluemix.net/evidencer/"+link); 
+	  	PostMethod method = new PostMethod("http://localhost:8080/Evidencer/evidencer/"+link);  
 	if(postData!=null)
 		for(int i=0;i<postData.size();i+=2){
 			
