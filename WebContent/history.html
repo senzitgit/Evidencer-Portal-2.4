@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+   <head>
+      <meta charset="utf-8" />
+      <title>Evidencer | Case History</title>
+      <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      <link rel="stylesheet" href="css/app.v1.css" type="text/css" />
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+      <link rel="stylesheet" href="css/sidebar.css" type="text/css" />
+      <script src="js/1.11.1/jquery.min.js"></script>
+      <script type="text/javascript" src="libraries/jwplayer/jwplayer.js" ></script>
+      <script type="text/javascript">jwplayer.key="J0+IRhB3+LyO0fw2I+2qT2Df8HVdPabwmJVeDWFFoplmVxFF5uw6ZlnPNXo=";</script>
+      <script src="js/Controllers/webServerService.js"></script>
+      <script src="js/Controllers/headerController.js"></script>
+      
+     <script src="js/Controllers/sideBarController.js"></script>
+      <!-- POPUP -->
+      <link rel="stylesheet" type="text/css" href="libraries/popup/jquery.fancybox.css" />
+      <link rel="stylesheet" type="text/css" href="libraries/popup/jquery.fancybox-buttons.css" />
+      <script src="libraries/popup/jquery.js"></script>
+      <script type="text/javascript" src="libraries/popup/jquery.fancybox.js"></script>
+   <body>
+      <section class="vbox">
+         <header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
+            <div class="navbar-header aside-md dk"> <a class="btn btn-link visible-xs" > 
+               <i class="fa fa-bars"></i> </a> <a href="dashboard.html" class="navbar-brand" style="display:inline !important;"> <img src="images/logo.png" Style="margin-left:-20px; height:40px" alt="scale"> </a> <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user"> <i class="fa fa-cog"></i> </a> 
+            </div>
+            <ul class="nav navbar-nav hidden-xs">
+               <li class="dropdown">
+           <img src="images/with_watson_badge_secondary_white_on_black.svg" style="margin-top: 7px;height: 46px;margin-left: 5px;">                  <section class="dropdown-menu aside-lg bg-white on animated fadeInLeft">
+                     <div class="row m-l-none m-r-none m-t m-b text-center">
+                        <div class="col-xs-4">
+                           <div class="padder-v"> <a href="live_sessions.html"> <span class="m-b-xs block"> <i class="i i-signal i-2x text-primary-lt"></i> </span> 
+                              <small class="text-muted">Live Stream</small> </a> 
+                           </div>
+                        </div>
+                        <div class="col-xs-4">
+                           <div class="padder-v"> <a href="video_on_demand.html"> <span class="m-b-xs block"> <i class="i i-play i-2x text-danger-lt"></i> </span> 
+                              <small class="text-muted">EviPlayer</small> </a> 
+                           </div>
+                        </div>
+                        <div class="col-xs-4">
+                           <div class="padder-v"> <a href="initialize_record.html"> <span class="m-b-xs block"> <i class="i i-camera2  i-2x text-success-lt"></i> </span> 
+                              <small class="text-muted">EviRecorder</small> </a> 
+                           </div>
+                        </div>
+                     </div>
+                     </div> 
+                  </section>
+               </li>
+            </ul>
+             <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
+               <li class="hidden-xs">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="i i-chat3"></i> <span class="badge badge-sm up bg-danger count">0</span> </a> 
+                  <section class="dropdown-menu aside-xl animated flipInY">
+                     <section class="panel bg-white">
+                        <div class="panel-heading b-light bg-light"> <strong>You have <span class="count">0</span> notification(s)</strong> </div>
+                        <div class="list-group list-group-alt"> </div>
+                        
+                        <div class="panel-footer text-sm"> <a href="#" class="pull-right"><i class="fa fa-cog"></i></a> <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a> </div>
+                     </section>
+                  </section>
+               </li>
+               <li class="dropdown" id="navBar">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                  <span id="navPicPanel" class="thumb-sm avatar pull-left"></span> <b></b> <b class="caret"></b> </a> 
+                  <ul class="dropdown-menu animated fadeInRight">
+                     <li> <a href="profile.jsp">Profile</a> </li>
+                     <li>  <a href="#"> <span class="badge bg-danger pull-right">0</span> Notifications </a> </li>
+                     <li> <a href="signout.jsp" >Logout</a> </li>
+                  </ul>
+               </li>
+            </ul>
+         </header>
+         <section>
+            <section class="hbox stretch">
+               <!-- .aside --> 
+               <aside class="bg-light lt b-r b-light aside-md hidden-print hidden-xs" id="nav">
+                  <section class="vbox">
+                     <section class="w-f scrollable">
+                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+                           <div class="clearfix wrapper dk nav-user hidden-xs" Style="background-color:#000; ">
+                              <div class="dropdown">
+                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span id ="picPanel" class="thumb avatar pull-left m-r"></span> 
+                                    <span class="hidden-nav-xs clear">
+                                       <span class="block m-t-xs">
+                                          <strong class="font-bold text-lt">
+                                             <font color="white">
+                                                <div id="namePanel"></div>
+                                             </font>
+                                          </strong>
+                                       </span>
+                                       <span class="text-muted text-xs block">
+                                          <b>
+                                             <font color="#c6aa5d">
+                                                <div id="rolePanel"></div>
+                                             </font>
+                                          </b>
+                                       </span>
+                                    </span>
+                                 </a>
+                              </div>
+                           </div>
+                           <!-- nav --> 
+                           <nav class="nav-primary hidden-xs">
+                              <div class="text-muted text-sm hidden-nav-xs padder m-t-sm m-b-sm">Start</div>
+                              <ul class="nav nav-main" data-ride="collapse" id="sideBar"></ul>
+                              <div class="line dk hidden-nav-xs"></div>
+                           </nav>
+                           <!-- / nav --> 
+                        </div>
+                     </section>
+                     <footer class="footer hidden-xs no-padder text-center-nav-xs"> <a href="index.html" data-toggle="ajaxModal" class="btn btn-icon icon-muted btn-inactive pull-right m-l-xs m-r-xs hidden-nav-xs"> <i class="i i-logout"></i> </a> <a href="#nav" data-toggle="class:nav-xs" class="btn btn-icon icon-muted btn-inactive m-l-xs m-r-xs"> <i class="i i-circleleft text"></i> <i class="i i-circleright text-active"></i> </a> </footer>
+                  </section>
+               </aside>
+               <!-- /.aside --> 
+               <section id="content">
+                  <section class="vbox">
+                  
+                     <header class="header bg-white b-b b-light">
+                        <br>
+                      
+                        <div style="float:left;" id="thisCaseDetails"></div>
+                     </header>
+                  
+                  
+                     <section class="scrollable wrapper w-f">
+                        <div class="row">
+                           <div class="col-md-12" >
+                        
+                                
+                                
+                                <section class="panel panel-info"  Style="border:none;">
+                                       <div class="panel-body">
+                                       
+                                       
+                                       
+<div class="col-lg-12">
+   <!-- .comment-list --> 
+   <section class="comment-list block">
+      <article id="comment-id-1" class="comment-item">
+         <a class="pull-left thumb-sm avatar"> <img src="images/a1.png" class="img-circle"> </a> <span class="arrow left"></span> 
+         <section class="comment-body panel panel-default">
+            <header class="panel-heading bg-white"> <h4><a href="#">Received Evidence Images from</a> <label class="label bg-info m-l-xs">EviMob Application</label></h4> <span class="text-muted m-l-sm pull-right"> <i class="fa fa-clock-o"></i> 24 October 2015 </span><br> </header>
+            <div class="panel-body">
+               <img src="images/evidencer_mob.png">
+               
+               
+               
+               <div>
+               <h5>Evidence Description : <b>Boy murdered by Mother at Rowlett, Texas</b></h5>
+               <h5>Evidence Sent From : <b>Rowlett, Texas (32.915922,-96.548673)</b></h5>
+        
+               <h5>Evidence Sent By : <b>John Peter (Citizen)</b></h5>
+
+
+
+
+
+
+</div>
+            </div>
+         </section>
+      </article>
+  
+      <!-- / .comment-reply --> 
+      <article id="comment-id-3" class="comment-item">
+         <a class="pull-left thumb-sm avatar"><img src="images/evi_logo.png"></a> <span class="arrow left"></span> 
+         <section class="comment-body panel panel-default">
+            <header class="panel-heading"> <h4><a href="#">Immigration Process Initiated by</a> <label class="label bg-success m-l-xs">Evidencer - Border Protection</label></h4> <span class="text-muted m-l-sm pull-right"> <i class="fa fa-clock-o"></i> 26 October 2015 </span> <br></header>
+            <div class="panel-body">
+               <div>
+
+
+ <div class="col-md-6">
+<section class="panel panel-default">
+   <header class="panel-heading bg-light no-border">
+      <div class="clearfix">
+        
+         <div class="clear">
+            <div class="h3 m-t-xs m-b-xs"> IM001 </div>
+            <small class="text-muted">Immigration Number</small> 
+         </div>
+      </div>
+   </header>
+   <div class="list-group no-radius alt"> 
+   
+   <a class="list-group-item" href="#">  <h5>Damon Murder Case</h5> </a> 
+   <a class="list-group-item" href="#">  Darlie Lynn Peck Routier (born January 4, 1970) is an American woman from Rowlett, Texas, who was convicted of murdering her five-year-old son, Damon. Two of her sons, Damon and 6-year-old Devon, were killed in the attack, but she was only tried for the murder of Damon. </a> 
+   <a class="list-group-item" href="#">  Immigration Location : <b>Mountain View Unit, Texas </b> </a> </div>
+</section> 
+ 
+ 
+ 
+ </div>
+ <div class="col-md-6">
+ 
+ 
+ 
+ 
+ <section class="panel b-a">
+                                       <div class="panel-heading b-b">
+                                          <a href="#" class="font-bold">Feed 1</a> 
+                                          <div  id="mutebtn1">
+                                             <div  class="fa fa-volume-up"  style="font-size:20px; float:right;margin-top:-20px;">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <center>
+                                          <div id="feed1"></div>
+                                       </center>
+                                    </section>
+ 
+ 
+ <script>
+ 
+ jwplayer("feed1").setup({
+
+     autostart: true,
+     controls: true,
+
+
+     file: "http://www.rebbon.com/samples/immigration.mp4",
+
+     rtmp: {
+         bufferlength: 0
+     },
+     width: "400",
+     height: "250",
+     primary: "flash",
+     mute: true,
+     'stretching': 'exactfit',
+     logo: {
+         file: "images/jw_logo.png"
+     }
+
+
+ });
+ 
+ </script>
+ </div>
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ <div class="row" id="watsonReports" style="">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <div class="col-md-12">
+ 
+ 
+ 
+ 
+ <section class="panel b-a">
+                                       <div class="panel-heading b-b">
+                                          <a href="#" class="font-bold">Log Notes (Speech to Text)</a> 
+                                          
+                                       </div>
+                                       
+                                       
+                                       
+                                       
+                                         <section class="content scrollable" style="height: 300px; font-size:10px;" id="logNotes">
+ <div id="loadLogs"><section id="s0" class="content" onclick="seekFeeds(0)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Clerk : senzit123</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Recording Started</b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:22:23</div></section><section id="s31" class="content" onclick="seekFeeds(31)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So what did happen that night </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:00</div></section><section id="s32" class="content" onclick="seekFeeds(32)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Darlene I discussed it. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:01</div></section><section id="s32" class="content" onclick="seekFeeds(32)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Earlier </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:01</div></section><section id="s34" class="content" onclick="seekFeeds(34)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; What what you are </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:03</div></section><section id="s37" class="content" onclick="seekFeeds(37)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Darlene I discussed it earlier. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:06</div></section><section id="s37" class="content" onclick="seekFeeds(37)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; My little boy payment </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:06</div></section><section id="s43" class="content" onclick="seekFeeds(43)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; What what you are. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:12</div></section><section id="s43" class="content" onclick="seekFeeds(43)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It was. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:12</div></section><section id="s43" class="content" onclick="seekFeeds(43)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I think on my shoulder and he was saying mommy </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:12</div></section><section id="s44" class="content" onclick="seekFeeds(44)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; My little boy. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:14</div></section><section id="s44" class="content" onclick="seekFeeds(44)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Payment. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:14</div></section><section id="s44" class="content" onclick="seekFeeds(44)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I sat straight at </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:14</div></section><section id="s46" class="content" onclick="seekFeeds(46)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; When he said that </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:16</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; What what you are. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; My little boy. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It was. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I think on my shoulder. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; And he was saying mommy. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s48" class="content" onclick="seekFeeds(48)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; And </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:18</div></section><section id="s53" class="content" onclick="seekFeeds(53)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I saw I got it starting </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:23</div></section><section id="s55" class="content" onclick="seekFeeds(55)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It was I think on my shoulder. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:25</div></section><section id="s55" class="content" onclick="seekFeeds(55)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I sat straight at. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:25</div></section><section id="s55" class="content" onclick="seekFeeds(55)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Walk away from me </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:25</div></section><section id="s61" class="content" onclick="seekFeeds(61)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Walk away from me. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:31</div></section><section id="s61" class="content" onclick="seekFeeds(61)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Her neck wound is still visible yet she has no memory of the attack </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:31</div></section><section id="s66" class="content" onclick="seekFeeds(66)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It was I think on my shoulder and he was saying mommy. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:36</div></section><section id="s66" class="content" onclick="seekFeeds(66)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; At trial even Darley conceded it would be hard to sleep through it </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:36</div></section><section id="s70" class="content" onclick="seekFeeds(70)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Yeah I mean how would anybody splinters </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:41</div></section><section id="s74" class="content" onclick="seekFeeds(74)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; At. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:45</div></section><section id="s74" class="content" onclick="seekFeeds(74)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; The church so you don't remember. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:45</div></section><section id="s74" class="content" onclick="seekFeeds(74)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; But I tell </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:45</div></section><section id="s78" class="content" onclick="seekFeeds(78)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Can you imagine waking up at eight years with that man </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:49</div></section><section id="s79" class="content" onclick="seekFeeds(79)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:23:50</div></section><section id="s115" class="content" onclick="seekFeeds(115)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; What do you think happened that if you can't remember but you don't think you slept through it. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:32</div></section><section id="s115" class="content" onclick="seekFeeds(115)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I think that I tried to fight with a man and I think that either I mean consonants </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:32</div></section><section id="s117" class="content" onclick="seekFeeds(117)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I think that many </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:34</div></section><section id="s120" class="content" onclick="seekFeeds(120)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You know he slit my throat or whatever I think I </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:37</div></section><section id="s121" class="content" onclick="seekFeeds(121)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Pat staff </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:39</div></section><section id="s125" class="content" onclick="seekFeeds(125)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; The prosecution made much of Charlie's inappropriate behavior </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:43</div></section><section id="s131" class="content" onclick="seekFeeds(131)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; For instance the first policeman on the scene testified early didn't seem concerned about Damon yet also </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:50</div></section><section id="s133" class="content" onclick="seekFeeds(133)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I think. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:53</div></section><section id="s133" class="content" onclick="seekFeeds(133)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; That. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:53</div></section><section id="s133" class="content" onclick="seekFeeds(133)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I tried to fight with a man and I think that either I mean consonants. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:53</div></section><section id="s133" class="content" onclick="seekFeeds(133)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; An instrument weary no </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:24:53</div></section><section id="s141" class="content" onclick="seekFeeds(141)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; An instrument weary. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:25:02</div></section><section id="s141" class="content" onclick="seekFeeds(141)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; No. </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:25:02</div></section><section id="s141" class="content" onclick="seekFeeds(141)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; All </b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:25:02</div></section><section id="s157" class="content" onclick="seekFeeds(157)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Clerk : senzit123</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Recording Stopped</b><br><i>on</i>&nbsp;&nbsp; 10/26/2015  11:25:20</div></section></div>
+</section>
+                                       
+                                       
+                                       
+                                    </section>
+                                    
+                                    </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                           <div class="col-lg-12">
+                              <div class="row">
+                                 <div class="col-lg-6" id="">
+                                    <section class="panel panel-info" style="border:none;">
+                                       <div class="panel-body">
+                                          <div class="row">
+                                             <div class="col-md-12">
+                                                 <a href="#" class="thumb pull-left m-r"> <img src="images/ToneAnalyzer.svg" class="img-circle b-a b-3x b-white"> </a> 
+                                 <div class="clear"> </div>
+                                 <h4 class="m-t-none m-b">Tone Analyzer
+                                                </h4>
+                                                <small class="block text-muted" style="color:#788288 !important" id="reportGenTone">Report generated at Tue,24-10-2017,17:55:24</small> 
+                                             </div>
+                                             <div class="col-md-12">
+                                                <br>
+                                              
+                                                <section class="panel panel-default" id="doc_level" style="display:block">
+                                                   <header class="panel-heading">
+                                                      Document-level
+                                                   </header>
+                                                   <div class="panel-body">
+                                                      <div class="col-md-12">
+                                                         <h5>Emotion</h5>
+                                                         <span> .5 = likely present</span><br>
+                                                         <span>&gt; .75 = very likely present </span>
+                                                         <br><br>
+                                                      </div>
+                                                      <div class="col-md-12">
+                                                         <ul class="list-group">
+                                                            <li class="list-group-item" id="document_level_list">
+                                                            <b>Tentative - 0.531174</b> LIKELY<div class="progress progress-sm m-t-sm progress-striped active"><div class="progress-bar bg-primary" data-toggle="tooltip" data-original-title="53.1174%" style="width: 53.1174%;background-color:#ff66fc;"></div></div><b>Analytical - 0.630914</b> LIKELY<div class="progress progress-sm m-t-sm progress-striped active"><div class="progress-bar bg-primary" data-toggle="tooltip" data-original-title="63.0914%" style="width: 63.0914%;background-color:#f4b942;"></div></div></li>
+                                                         </ul>
+                                                      </div>
+                                                   </div>
+                                                </section>
+                                                <!-- <section class="panel panel-default" id="sentence_level" style="display:none"> 
+                                                   <header class="panel-heading">
+                                                     Sentence-level
+                                                    </header>
+                                                    
+                                                   
+                                                   
+                                                   <div class="panel-body">
+                                                   
+                                                   <div class="panel panel-default tab-content scrollable"   Style="height: 300px; ">
+                                                    <ul class="list-group tab-pane active" id="sentence_tone_list">
+                                                       
+                                                       
+                                                    </ul>
+                                                    
+                                                    
+                                                   </div>
+                                                   
+                                                    
+                                                   </div>
+                                                   
+                                                   
+                                                   </section> -->
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </section>
+                                 </div>
+                                
+                                
+                                
+                                
+                                
+                                              <div class="col-lg-6" id="">
+                              <section class="panel panel-info" style="border:none;">
+                                 <div class="panel-body">
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                         <a href="#" class="thumb pull-left m-r"> <img src="images/stt.svg" class="img-circle b-a b-3x b-white"> </a> 
+                                 <div class="clear"> </div>
+                                 <h4 class="m-t-none m-b">Sentimental Analyzer
+                                                </h4>
+                                                <small class="block text-muted" style="color:#788288 !important" id="reportGenSenti">Report generated at Tue,24-10-2017,17:55:24</small> 
+                                       </div>
+                                       <div class="col-md-12">
+                                          <br><br>
+                                       
+                                          <section class="panel panel-default" id="sentiana_level" style="display:block">
+                                             <div class="panel-body">
+                                                <div class="col-md-12">
+                                                   <div id="overall_senti"><section class="panel panel-info"><div class="panel-body"> <div class="clear"> <a href="#" class="text-info" style="font-size:16px;">Overall Sentiment <i class="icon-twitter"></i></a><small class="block text-muted" style="font-size:15px;">Value : <b>-0.576951</b></small><a href="#" class="btn btn-xs btn-success m-t-xs">negative</a> </div> </div> </section></div>
+                                                   <section class="panel panel-default">
+                                                      <header class="panel-heading"> <span class="label bg-danger  m-t-xs">Keywords</span> </header>
+                                                      <table class="table table-striped m-b-none" style="    font-size: 13px;">
+                                                         <thead>
+                                                            <tr>
+                                                               <th>Text</th>
+                                                               <th>Relevance</th>
+                                                               <th></th>
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody id="sentimentalDataTable">
+                                                          <tr><td>Speaker</td> <td>0.959074</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="95.9074%" style="width: 95.9074%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>little boy</td> <td>0.488436</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="48.843599999999995%" style="width: 48.843599999999995%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>little boy payment</td> <td>0.401733</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="40.1733%" style="width: 40.1733%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>anybody splinters Speaker</td> <td>0.392</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="39.2%" style="width: 39.2%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Pat staff Speaker</td> <td>0.383507</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="38.350699999999996%" style="width: 38.350699999999996%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>shoulder</td> <td>0.377845</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="37.7845%" style="width: 37.7845%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>neck wound</td> <td>0.357877</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.7877%" style="width: 35.7877%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>mommy</td> <td>0.357196</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.7196%" style="width: 35.7196%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>inappropriate behavior</td> <td>0.35484</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.484%" style="width: 35.484%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>night Speaker</td> <td>0.352121</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.2121%" style="width: 35.2121%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>mommy Speaker</td> <td>0.351937</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.1937%" style="width: 35.1937%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Earlier Speaker</td> <td>0.350701</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.0701%" style="width: 35.0701%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>consonants Speaker</td> <td>0.344195</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.4195%" style="width: 34.4195%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>attack Speaker</td> <td>0.344058</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.4058%" style="width: 34.4058%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>man Speaker</td> <td>0.337769</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="33.7769%" style="width: 33.7769%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Darlene</td> <td>0.3335</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="33.35%" style="width: 33.35%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>instrument</td> <td>0.322754</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.2754%" style="width: 32.2754%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Darley</td> <td>0.314866</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.4866%" style="width: 31.4866%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>policeman</td> <td>0.3138</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.380000000000003%" style="width: 31.380000000000003%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>instance</td> <td>0.312959</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2959%" style="width: 31.2959%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>church</td> <td>0.312864</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.286399999999997%" style="width: 31.286399999999997%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>throat</td> <td>0.312536</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2536%" style="width: 31.2536%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>memory</td> <td>0.312502</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2502%" style="width: 31.2502%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>trial</td> <td>0.312366</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2366%" style="width: 31.2366%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Damon</td> <td>0.312359</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2359%" style="width: 31.2359%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>prosecution</td> <td>0.312237</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.223699999999997%" style="width: 31.223699999999997%;background-color:#E80521;"></div> </div> </td></tr></tbody>
+                                                      </table>
+                                                   </section>
+                                                </div>
+                                             </div>
+                                          </section>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </section>
+                           </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                 
+                              </div>
+                            
+                           </div>
+                        </div>
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            </div>
+         </section>
+      </article>
+      <article id="comment-id-4" class="comment-item">
+         <a class="pull-left thumb-sm avatar"><img src="images/evi_logo.png"></a> <span class="arrow left"></span> 
+         <section class="comment-body panel panel-default">
+            <header class="panel-heading"><h4> <a href="#">Crime Interrogation Recorded By</a> <label class="label bg-primary m-l-xs">Evidencer Law Enforcement</label> </h4><span class="text-muted m-l-sm pull-right"> <i class="fa fa-clock-o"></i> 10 November 2015 </span><br></header>
+            <div class="panel-body">
+              
+ <div class="col-md-12">
+<section class="panel panel-default">
+   <header class="panel-heading bg-light no-border">
+      <div class="clearfix">
+        
+         <div class="clear">
+            <div class="h3 m-t-xs m-b-xs"> CR001 </div>
+            <small class="text-muted">Crime Number</small> 
+         </div>
+      </div>
+   </header>
+   <div class="list-group no-radius alt"> 
+   
+   <a class="list-group-item" href="#">  <h5>Damon Murder Case</h5> </a> 
+   <a class="list-group-item" href="#">  Darlie Lynn Peck Routier (born January 4, 1970) is an American woman from Rowlett, Texas, who was convicted of murdering her five-year-old son, Damon. Two of her sons, Damon and 6-year-old Devon, were killed in the attack, but she was only tried for the murder of Damon. </a> 
+     <a class="list-group-item" href="#"> Crime Type : <b>Criminal </b> </a> </div>
+   <a class="list-group-item" href="#">  Interrogation Location : <b>Mountain View Unit, Texas </b> </a> </div>
+</section> 
+ 
+ 
+ 
+ </div>
+ <div class="col-md-12">
+ 
+ <div class="col-md-6">
+ 
+ 
+  <section class="panel b-a">
+                                       <div class="panel-heading b-b">
+                                          <a href="#" class="font-bold">Feed 1</a> 
+                                          <div  id="mutebtn1">
+                                             <div  class="fa fa-volume-up"  style="font-size:20px; float:right;margin-top:-20px;">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <center>
+                                          <div id="feed2"></div>
+                                       </center>
+                                    </section>
+  <script>
+ 
+ jwplayer("feed2").setup({
+
+     autostart: true,
+     controls: true,
+
+
+     file: "http://rebbon.com/samples/interro.mp4",
+
+     rtmp: {
+         bufferlength: 0
+     },
+     width: "400",
+     height: "250",
+     primary: "flash",
+     mute: true,
+     'stretching': 'exactfit',
+     logo: {
+         file: "images/jw_logo.png"
+     }
+
+
+ });
+ 
+ </script>
+ </div>
+ <div class="col-md-6">
+ 
+ 
+  <section class="panel b-a">
+                                       <div class="panel-heading b-b">
+                                          <a href="#" class="font-bold">Feed 2</a> 
+                                          <div  id="mutebtn1">
+                                             <div  class="fa fa-volume-up"  style="font-size:20px; float:right;margin-top:-20px;">
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <center>
+                                          <div id="feed3"></div>
+                                       </center>
+                                    </section>
+ 
+  <script>
+ 
+ jwplayer("feed3").setup({
+
+     autostart: true,
+     controls: true,
+
+
+     file: "http://www.rebbon.com/samples/speaker2.mp4",
+
+     rtmp: {
+         bufferlength: 0
+     },
+     width: "400",
+     height: "250",
+     primary: "flash",
+     mute: true,
+     'stretching': 'exactfit',
+     logo: {
+         file: "images/jw_logo.png"
+     }
+
+
+ });
+ 
+ </script>
+ 
+ </div>
+ 
+ 
+
+ 
+ 
+ <script>
+ 
+ jwplayer("feed1").setup({
+
+     autostart: true,
+     controls: true,
+
+
+     file: "http://www.rebbon.com/samples/immigration.mp4",
+
+     rtmp: {
+         bufferlength: 0
+     },
+     width: "400",
+     height: "250",
+     primary: "flash",
+     mute: true,
+     'stretching': 'exactfit',
+     logo: {
+         file: "images/jw_logo.png"
+     }
+
+
+ });
+ 
+ </script>
+ </div>
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+
+ <div class="row" id="watsonReports" style="">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <div class="col-md-12">
+ 
+ 
+ 
+ 
+ <section class="panel b-a">
+                                       <div class="panel-heading b-b">
+                                          <a href="#" class="font-bold">Log Notes (Speech to Text)</a> 
+                                          
+                                       </div>
+                                       
+                                       
+                                       
+                                       
+                                         <section class="content scrollable" style="height: 300px; font-size:10px;" id="logNotes">
+<div id="loadLogs"><section id="s0" class="content" onclick="seekFeeds(0)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Clerk : senzit123</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Recording Started</b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:13</div></section><section id="s19" class="content" onclick="seekFeeds(19)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 0</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:38</div></section><section id="s33" class="content" onclick="seekFeeds(33)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; These points and about a bit in that house but you Darren in your job. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:53</div></section><section id="s33" class="content" onclick="seekFeeds(33)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Somebody take it's my hope and my my children and me </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:53</div></section><section id="s38" class="content" onclick="seekFeeds(38)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:59</div></section><section id="s38" class="content" onclick="seekFeeds(38)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Why </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:23:59</div></section><section id="s41" class="content" onclick="seekFeeds(41)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You lied to us </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:02</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Yeah. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Look ineffectual. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Right now. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Djalili. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Roots here you haven't shared. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s49" class="content" onclick="seekFeeds(49)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; One </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:10</div></section><section id="s50" class="content" onclick="seekFeeds(50)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So we're sitting here </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:12</div></section><section id="s56" class="content" onclick="seekFeeds(56)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Yeah look ineffectual right now. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:18</div></section><section id="s56" class="content" onclick="seekFeeds(56)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; So that makes no. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:18</div></section><section id="s56" class="content" onclick="seekFeeds(56)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Water not a tia well I don't mind. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:18</div></section><section id="s56" class="content" onclick="seekFeeds(56)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; If you </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:18</div></section><section id="s60" class="content" onclick="seekFeeds(60)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You know what I do and the tears I've cried when </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:23</div></section><section id="s63" class="content" onclick="seekFeeds(63)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; These. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:25</div></section><section id="s63" class="content" onclick="seekFeeds(63)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Points and about a bit in that house but you Darren in your job. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:25</div></section><section id="s63" class="content" onclick="seekFeeds(63)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Well. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:25</div></section><section id="s63" class="content" onclick="seekFeeds(63)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; If you could show your children </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:25</div></section><section id="s63" class="content" onclick="seekFeeds(63)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Who killed </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:26</div></section><section id="s64" class="content" onclick="seekFeeds(64)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Yeah look ineffectual right now Djalili roots here you haven't shared one. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:27</div></section><section id="s64" class="content" onclick="seekFeeds(64)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Water not a tia well I don't mind if you. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:27</div></section><section id="s64" class="content" onclick="seekFeeds(64)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I can't </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:27</div></section><section id="s69" class="content" onclick="seekFeeds(69)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Yeah look ineffectual right now Djalili roots here you haven't shared. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:32</div></section><section id="s69" class="content" onclick="seekFeeds(69)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Bridget I purposely put do all it through the wringer and she held up well </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:32</div></section><section id="s70" class="content" onclick="seekFeeds(70)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; But we still weren't sure </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:34</div></section><section id="s77" class="content" onclick="seekFeeds(77)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Good evening we popped in the tape of the interview and watched it to see if there's something we missed </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:41</div></section><section id="s81" class="content" onclick="seekFeeds(81)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; These points and about a bit in that house but you. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:45</div></section><section id="s81" class="content" onclick="seekFeeds(81)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Darren in your job somebody take it's my hope and my my children and me. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:45</div></section><section id="s81" class="content" onclick="seekFeeds(81)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Why. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:45</div></section><section id="s81" class="content" onclick="seekFeeds(81)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Well if you could show your children. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:45</div></section><section id="s81" class="content" onclick="seekFeeds(81)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You know it's very possible </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:45</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Who killed. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Bridget I purposely put do all it through the wringer. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; And she held up well. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You know it's very. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Possible. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s83" class="content" onclick="seekFeeds(83)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; We don't want to </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:47</div></section><section id="s90" class="content" onclick="seekFeeds(90)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It is. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:56</div></section><section id="s90" class="content" onclick="seekFeeds(90)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Essential to listen listening assignment of </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:56</div></section><section id="s92" class="content" onclick="seekFeeds(92)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You have to </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:24:57</div></section><section id="s98" class="content" onclick="seekFeeds(98)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I just don't think about what you execute hurdle </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:05</div></section><section id="s110" class="content" onclick="seekFeeds(110)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Whether it was Dolly herself </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:20</div></section><section id="s111" class="content" onclick="seekFeeds(111)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 2</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Whether it was Dolly herself. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:21</div></section><section id="s111" class="content" onclick="seekFeeds(111)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Leetch trade your </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:21</div></section><section id="s113" class="content" onclick="seekFeeds(113)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; The murders somehow with popularity </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:24</div></section><section id="s116" class="content" onclick="seekFeeds(116)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; We don't want to. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:29</div></section><section id="s116" class="content" onclick="seekFeeds(116)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; It is essential to listen listening assignment of. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:29</div></section><section id="s116" class="content" onclick="seekFeeds(116)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; You have to. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:29</div></section><section id="s116" class="content" onclick="seekFeeds(116)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; I just don't think about what you execute hurdle. </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:29</div></section><section id="s116" class="content" onclick="seekFeeds(116)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Both rich and I had a hunch that killing to to your voice </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:29</div></section><section id="s117" class="content" onclick="seekFeeds(117)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; What's supposed to happen </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:30</div></section><section id="s117" class="content" onclick="seekFeeds(117)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; But it </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:30</div></section><section id="s123" class="content" onclick="seekFeeds(123)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; A little part of the internet price as a shuttle heading over each of them for the rest of their lives </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:38</div></section><section id="s126" class="content" onclick="seekFeeds(126)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; In the end despite dollies conviction </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:41</div></section><section id="s132" class="content" onclick="seekFeeds(132)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Speaker 1</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Regina airport to this she was putting it largely on circumstantial evidence too thin and flimsy </b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:49</div></section><section id="s132" class="content" onclick="seekFeeds(132)"><div class="list-group-item text-ellipsis"><span class="badge bg-success" style="float:left;background-color:#a00a0a;">Clerk : senzit123</span> &nbsp;&nbsp;<i>said</i><b>&nbsp;&nbsp; Recording Stopped</b><br><i>on</i>&nbsp;&nbsp; 11/10/2015  12:25:50</div></section></div></section>
+                                       
+                                       
+                                       
+                                    </section>
+                                    
+                                    </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                           <div class="col-lg-12">
+                              <div class="row">
+                                 <div class="col-lg-6" id="">
+                                    <section class="panel panel-info" style="border:none;">
+                                       <div class="panel-body">
+                                          <div class="row">
+                                             <div class="col-md-12">
+                                                 <a href="#" class="thumb pull-left m-r"> <img src="images/ToneAnalyzer.svg" class="img-circle b-a b-3x b-white"> </a> 
+                                 <div class="clear"> </div>
+                                 <h4 class="m-t-none m-b">Tone Analyzer
+                                                </h4>
+                                                <small class="block text-muted" style="color:#788288 !important" id="reportGenTone">Report generated at Tue,24-10-2017,17:55:24</small> 
+                                             </div>
+                                             <div class="col-md-12">
+                                                <br>
+                                              
+                                                <section class="panel panel-default" id="doc_level" style="display:block">
+                                                   <header class="panel-heading">
+                                                      Document-level
+                                                   </header>
+                                                   <div class="panel-body">
+                                                      <div class="col-md-12">
+                                                         <h5>Emotion</h5>
+                                                         <span> .5 = likely present</span><br>
+                                                         <span>&gt; .75 = very likely present </span>
+                                                         <br><br>
+                                                      </div>
+                                                      <div class="col-md-12">
+                                                         <ul class="list-group">
+                                                            <li class="list-group-item" id="document_level_list">
+                                                            <b>Sadness - 0.540967</b> LIKELY<div class="progress progress-sm m-t-sm progress-striped active"><div class="progress-bar bg-primary" data-toggle="tooltip" data-original-title="54.0967%" style="width: 54.0967%;background-color:#000;"></div></div><b>Tentative - 0.525656</b> LIKELY<div class="progress progress-sm m-t-sm progress-striped active"><div class="progress-bar bg-primary" data-toggle="tooltip" data-original-title="52.5656%" style="width: 52.5656%;background-color:#ff66fc;"></div></div></li>
+                                                         </ul>
+                                                      </div>
+                                                   </div>
+                                                </section>
+                                                <!-- <section class="panel panel-default" id="sentence_level" style="display:none"> 
+                                                   <header class="panel-heading">
+                                                     Sentence-level
+                                                    </header>
+                                                    
+                                                   
+                                                   
+                                                   <div class="panel-body">
+                                                   
+                                                   <div class="panel panel-default tab-content scrollable"   Style="height: 300px; ">
+                                                    <ul class="list-group tab-pane active" id="sentence_tone_list">
+                                                       
+                                                       
+                                                    </ul>
+                                                    
+                                                    
+                                                   </div>
+                                                   
+                                                    
+                                                   </div>
+                                                   
+                                                   
+                                                   </section> -->
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </section>
+                                 </div>
+                                
+                                
+                                
+                                
+                    <div class="col-md-6">
+                                                   <div id="overall_senti"><section class="panel panel-info"><div class="panel-body"> <div class="clear"> <a href="#" class="text-info" style="font-size:16px;">Overall Sentiment <i class="icon-twitter"></i></a><small class="block text-muted" style="font-size:15px;">Value : <b>-0.116507</b></small><a href="#" class="btn btn-xs btn-success m-t-xs">negative</a> </div> </div> </section></div>
+                                                   <section class="panel panel-default">
+                                                      <header class="panel-heading"> <span class="label bg-danger  m-t-xs">Keywords</span> </header>
+                                                      <table class="table table-striped m-b-none" style="    font-size: 13px;">
+                                                         <thead>
+                                                            <tr>
+                                                               <th>Text</th>
+                                                               <th>Relevance</th>
+                                                               <th></th>
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody id="sentimentalDataTable">
+                                                          <tr><td>Speaker</td> <td>0.969718</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="96.9718%" style="width: 96.9718%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Djalili roots</td> <td>0.37617</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="37.617%" style="width: 37.617%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>children</td> <td>0.356288</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="35.6288%" style="width: 35.6288%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Darren</td> <td>0.346484</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.6484%" style="width: 34.6484%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>bit</td> <td>0.345708</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.5708%" style="width: 34.5708%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>points</td> <td>0.343495</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.3495%" style="width: 34.3495%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>house</td> <td>0.343415</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.3415%" style="width: 34.3415%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>job</td> <td>0.343283</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.3283%" style="width: 34.3283%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Good evening</td> <td>0.341099</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="34.109899999999996%" style="width: 34.109899999999996%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>tia</td> <td>0.329143</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.914300000000004%" style="width: 32.914300000000004%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>hope</td> <td>0.326728</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.6728%" style="width: 32.6728%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Water</td> <td>0.326577</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.6577%" style="width: 32.6577%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Bridget</td> <td>0.326078</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.6078%" style="width: 32.6078%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>wringer</td> <td>0.324465</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="32.4465%" style="width: 32.4465%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>tears</td> <td>0.312355</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.2355%" style="width: 31.2355%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>Somebody</td> <td>0.311896</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.189600000000002%" style="width: 31.189600000000002%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>hurdle</td> <td>0.311867</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.186700000000002%" style="width: 31.186700000000002%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>assignment</td> <td>0.311243</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.124299999999998%" style="width: 31.124299999999998%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>interview</td> <td>0.31121</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.121%" style="width: 31.121%;background-color:#E80521;"></div> </div> </td></tr> <tr><td>tape</td> <td>0.311025</td> <td><div class="progress progress-sm progress-striped active m-t-xs m-b-none"> <div class="progress-bar bg-success" data-toggle="tooltip" data-original-title="31.1025%" style="width: 31.1025%;background-color:#E80521;"></div> </div> </td></tr></tbody>
+                                                      </table>
+                                                   </section>
+                                                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                 
+                              </div>
+                            
+                           </div>
+                        </div>
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+              
+         </section>
+      </article>
+  
+   </section>
+   <!-- / .comment-list --> 
+</div>                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       </div>
+                                       
+                                      </section>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                 
+                              </div>
+                            
+                           </div>
+                
+                       
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                     </section>
+                     <!-- wraper-->
+                  </section>
+                  <!-- vbox -->
+               </section>
+               <!-- Content -->
+               <!-- App --> 
+               <script src="js/bootstrap.js"></script> 
+               <script src="js/datepicker/bootstrap-datepicker.js"></script>
+               <script src="js/parsley/parsley.min.js"></script>
+               <script src="js/parsley/parsley.extend.js"></script> 
+               <script src="js/app.plugin.js"></script>
+            </section>
+         </section>
+      </section>
+   </body>
+</html>
